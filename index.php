@@ -12,6 +12,5 @@ require_once 'ClassAutoLoad.php';
 //$hello = new HelloWorld();
 
 $layout->header($conf);
-print $hello->today();
 $form->signup();
 $layout->footer($conf);
