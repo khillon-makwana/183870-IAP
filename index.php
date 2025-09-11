@@ -11,6 +11,8 @@ require_once 'ClassAutoLoad.php';
 //create an instance of HelloWorld
 //$hello = new HelloWorld();
 
-$layout->header($conf);
-$form->signup();
-$layout->footer($conf);
+$ObjLayout->header($conf);
+$ObjLayout->nav($conf);
+$ObjLayout->banner($conf);
+$ObjLayout->content($conf);
+$ObjLayout->footer($conf);
