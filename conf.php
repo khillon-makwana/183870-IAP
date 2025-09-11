@@ -1,7 +1,7 @@
 <?php
 // Site Information
 $conf['site_name'] = 'ICS C Community';
-$conf['site_url'] = 'http://localhost';
+$conf['site_url'] = 'http://localhost/183870-IAP';
 $conf['admin_email'] = 'admin@icsccommunity.com';
 
 // Database Configuration
@@ -10,6 +10,7 @@ $conf['db_host'] = 'localhost';
 $conf['db_user'] = 'root';
 $conf['db_pass'] = '';
 $conf['db_name'] = '183870-IAP';
+$conf['db_port'] = 3307; 
 
 // Site Language
 $conf['site_lang'] = 'en';

@@ -1,0 +1,10 @@
+Git Workflow for 183870-IAP Project
+
+1. Stage all changes
+   git add .
+
+2. Commit changes with a message
+   git commit -m "Added personalized email sending with verification"
+
+3. Push changes to remote repository
+   git push 

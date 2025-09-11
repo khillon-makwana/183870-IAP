@@ -30,6 +30,7 @@ class layouts {
                      <li class="nav-item"> <a class="nav-link active" aria-current="page" href="./">Home</a> </li>
                      <li class="nav-item"> <a class="nav-link" href="signup.php">Sign Up</a> </li>
                      <li class="nav-item"> <a class="nav-link" href="signin.php">Sign In</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="list_users.php">View Users</a> </li>
                   </ul>
                   <form role="search"> <input class="form-control" type="search" placeholder="Search" aria-label="Search"> </form>
                </div>
