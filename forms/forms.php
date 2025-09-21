@@ -1,24 +1,28 @@
 <?php
 class forms {
-    public function signup() {
-?>
+    public function signup($conf, $ObjFncs) {
+          $err = $ObjFncs->getMsg('errors'); print $ObjFncs->getMsg('msg');
+        ?>
 <h1>Sign Up</h1>
-<form method="POST" action="signup.php">
+<form method="POST" action="signup.php" autocomplete="off">
   <div class="mb-3">
-    <label for="name" class="form-label">Name</label>
-    <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" required>
-    <div id="nameHelp" class="form-text">We'll never share your name with anyone else.</div>
+    <label for="fullname" class="form-label">Name</label>
+    <input type="text" class="form-control" id="fullname" name="fullname" aria-describedby="nameHelp" maxlength="50" value="<?php echo isset($_SESSION['fullname']) ? $_SESSION['fullname'] : ''; ?>" placeholder="Enter your fullname" required>
+    <?php print (isset($err['nameFormat_error']) ? '<div id="nameHelp" class="alert alert-danger">'.$err['nameFormat_error'].'</div>' : ''); ?>
   </div>
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" maxlength="100" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>" placeholder="Enter your email" required>
+    <?php print (isset($err['mailFormat_error']) ? '<div id="emailHelp" class="alert alert-danger">'.$err['mailFormat_error'].'</div>' : ''); ?>
+    <?php print (isset($err['emailDomain_error']) ? '<div id="nameHelp" class="alert alert-danger">'.$err['emailDomain_error'].'</div>' : ''); ?>
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password" required>
+    <input type="password" class="form-control" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? $_SESSION['password'] : ''; ?>" placeholder="Enter your password" required>
+    <?php print (isset($err['passwordLength_error']) ? '<div id="emailHelp" class="alert alert-danger">'.$err['passwordLength_error'].'</div>' : ''); ?>
   </div>
   <?php $this->submit_button("Sign Up", "signup"); ?>
-  <a href="signin.php">Already have an account? Log in</a>
+  <a href="signin.php" class="text-white">Already have an account? Log in</a>
 </form>
 <?php
     }

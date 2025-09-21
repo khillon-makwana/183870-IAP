@@ -3,18 +3,45 @@ class layouts {
     public function header($conf) {
         ?>
         <!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
+<html lang="en">
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="">
-      <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-      <meta name="generator" content="Astro v5.13.2">
-      <title>Jumbotron example · Bootstrap v5.3</title>
+      <meta name="description" content="<?php echo $conf['site_name']; ?> - A modern blogging platform.">
+      <title><?php echo $conf['site_name']; ?></title>
       
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+      <link href="<?php echo $conf['site_url']; ?>/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+      <style>
+         .navbar-custom {
+            background: linear-gradient(90deg, #20c997, #6f42c1);
+         }
+         .banner {
+            background: linear-gradient(135deg, #6f42c1, #20c997);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: .75rem;
+            text-align: center;
+            margin-bottom: 2rem;
+         }
+         .card-custom {
+            border-radius: .75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+         }
+         .card-custom:hover {
+            transform: translateY(-5px);
+         }
+         footer {
+            background: #6f42c1;
+            color: #f8f9fa;
+            padding: 1rem;
+            text-align: center;
+            border-radius: .5rem;
+            margin-top: 2rem;
+         }
+      </style>
    </head>
-   <body>
+   <body class="bg-light">
       <main>
          <div class="container py-4">
         <?php
@@ -22,90 +49,105 @@ class layouts {
 
     public function nav($conf) {
         ?>
-                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Fifth navbar example">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm mb-4">
             <div class="container-fluid">
-               <a class="navbar-brand" href="#">Expand at lg</a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button> 
+               <a class="navbar-brand fw-bold" href="#"><?php echo $conf['site_name']; ?></a> 
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation"> 
+                  <span class="navbar-toggler-icon"></span> 
+               </button> 
                <div class="collapse navbar-collapse" id="navbarsExample05">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                     <li class="nav-item"> <a class="nav-link active" aria-current="page" href="./">Home</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="signup.php">Sign Up</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="signin.php">Sign In</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="list_users.php">View Users</a> </li>
+                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                     <li class="nav-item"> 
+                        <a class="nav-link <?php if(basename($_SERVER['PHP_SELF']) == 'index.php') echo 'active'; ?>" href="./">Home</a> 
+                     </li>
+                     <li class="nav-item"> 
+                        <a class="nav-link <?php if(basename($_SERVER['PHP_SELF']) == 'signup.php') echo 'active'; ?>" href="signup.php">Sign Up</a> 
+                     </li>
+                     <li class="nav-item"> 
+                        <a class="nav-link <?php if(basename($_SERVER['PHP_SELF']) == 'signin.php') echo 'active'; ?>" href="signin.php">Sign In</a> 
+                     </li>
+                     <li class="nav-item"> 
+                        <a class="nav-link <?php if(basename($_SERVER['PHP_SELF']) == 'list_users.php') echo 'active'; ?>" href="list_users.php">View Users</a> 
+                     </li>
                   </ul>
-                  <form role="search"> <input class="form-control" type="search" placeholder="Search" aria-label="Search"> </form>
                </div>
             </div>
          </nav>
         <?php
-
     }
 
     public function banner($conf) {
         ?>
-            <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-               <div class="container-fluid py-5">
-                  <h1 class="display-5 fw-bold">Custom jumbotron</h1>
-                  <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-                  <button class="btn btn-primary btn-lg" type="button">Example button</button> 
-               </div>
-            </div>
+        <div class="banner">
+            <h1 class="display-4 fw-bold">Welcome to <?php echo $conf['site_name']; ?></h1>
+            <p class="lead">A modern blogging platform where ideas, stories, and insights come alive.</p> 
+        </div>
         <?php
     }
 
     public function content($conf) {
         ?>
-            <div class="row align-items-md-stretch">
-               <div class="col-md-6">
-                  <div class="h-100 p-5 text-bg-dark rounded-3">
-                     <h2>Change the background</h2>
-                     <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-                     <button class="btn btn-outline-light" type="button">Example button</button> 
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-                     <h2>Add borders</h2>
-                     <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-                     <button class="btn btn-outline-secondary" type="button">Example button</button> 
-                  </div>
-               </div>
-            </div>
+        <div class="row g-4">
+           <div class="col-md-6">
+              <div class="card card-custom p-4">
+                 <h2 class="fw-semibold">About</h2>
+                 <p>
+                 Readers can explore articles across different categories, leave comments, and engage in discussions.
+                 Admins manage posts, approve content, and keep the community safe.
+                 Whether you’re a casual blogger or a passionate storyteller, <?php echo $conf['site_name']; ?> is your space to be heard.
+                 </p> 
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="card card-custom p-4">
+                 <h2 class="fw-semibold">Get Started</h2>
+                 <p>
+                 Create an account to start writing, connect with readers, and showcase your thoughts to the world. Already have one? Sign in and continue your journey. 
+                 </p>
+              </div>
+           </div>
+        </div>
         <?php
     }
 
-    public function form_content($conf, $ObjForm) {
+    public function form_content($conf, $ObjForm, $ObjFncs) {
         ?>
-            <div class="row align-items-md-stretch">
-               <div class="col-md-6">
-                  <div class="h-100 p-5 text-bg-dark rounded-3">
-<?php if($_SERVER['PHP_SELF'] == '/183870-IAP/signup.php') {$ObjForm->signup();} elseif($_SERVER['PHP_SELF'] == '/183870-IAP/signin.php') {$ObjForm->signin();} ?>
-                </div>
-            </div>
-               <div class="col-md-6">
-                  <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-                     <h2>Add borders</h2>
-                     <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-                     <button class="btn btn-outline-secondary" type="button">Example button</button> 
-                  </div>
-               </div>
-            </div>
+        <div class="row g-4">
+           <div class="col-md-6">
+              <div class="card card-custom text-white p-4" style="background: linear-gradient(135deg, #6f42c1, #20c997);">
+                 <?php 
+                 if(basename($_SERVER['PHP_SELF']) == 'signup.php') {
+                     $ObjForm->signup($conf, $ObjFncs); 
+                 } elseif(basename($_SERVER['PHP_SELF']) == 'signin.php') {
+                     $ObjForm->signin($conf, $ObjFncs); 
+                 } 
+                 ?>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="card card-custom p-4">
+                 <h2 class="fw-semibold">About</h2>
+                 <p>
+                 Readers can explore articles across different categories, leave comments, and engage in discussions.
+                 Admins manage posts, approve content, and keep the community safe.
+                 Whether you’re a casual blogger or a passionate storyteller, <?php echo $conf['site_name']; ?> is your space to be heard.
+                 </p>
+              </div>
+           </div>
+        </div>
         <?php
     }
 
     public function footer($conf) {
         ?>
-        
-            
-
-            <footer class="pt-3 mt-4 text-body-secondary border-top">
-               <p>Copyright &copy; <?php echo date("Y"); ?> <?php print $conf['site_name']; ?> - All Rights Reserved</p>
-            </footer>
+        <footer>
+            <p class="mb-0">&copy; <?php echo date("Y"); ?> <?php print $conf['site_name']; ?> - All Rights Reserved</p>
+        </footer>
          </div>
       </main>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+      <script src="<?php echo $conf['site_url']; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
    </body>
 </html>
-
         <?php
     }
 }
